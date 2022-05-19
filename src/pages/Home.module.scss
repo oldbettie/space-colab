@@ -9,22 +9,85 @@ $third: darkgrey;
 	padding: 5em;
 	font-size: 75px;
 }
+.companyName {
+	font-size: 5em;
+	padding: 2em;
+}
 
 .imgContainer {
 	max-width: 100%;
 	max-height: 100%;
+	.landingImg {
+		position: relative;
+		top: 0;
+		height: 100%;
+		width: 100%;
+	}
 }
-
-.landingImg {
-	position: relative;
-	height: 100%;
+.newsLetter {
+	display: flex;
+	justify-content: center;
 }
-
 .textContent {
-	padding: 10px;
+	max-width: 400px;
 }
+
+.preferencesForm {
+	text-align: center;
+	.checkBoxLabel {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		padding: 2px;
+	}
+}
+.inputForm {
+	width: 400px;
+
+	.inputError {
+		margin: 0;
+		color: red;
+		font-size: 12px;
+		height: 20px;
+	}
+	.firstNameInput {
+		width: 45%;
+		display: inline-block;
+		margin: 0px 10px 10px 10px;
+		input {
+			width: 100%;
+			height: 20px;
+		}
+	}
+	.lastNameInput {
+		width: 45%;
+		display: inline-block;
+		margin: 10px;
+		input {
+			height: 20px;
+			width: 100%;
+		}
+	}
+	.emailInput {
+		width: 94.5%;
+		display: block;
+		margin: 0px 10px;
+
+		input {
+			height: 20px;
+			width: 100%;
+		}
+	}
+	button {
+		margin: 10px;
+		padding: 10px;
+		width: 96%;
+		border-radius: 0;
+	}
+}
+
 .preferencesContainer {
-	display: none;
+	display: block;
 }
 footer {
 	display: flex;
@@ -44,23 +107,43 @@ footer {
 		}
 	}
 }
-@media (max-width: 500px) {
-	.companyName {
-		font-size: 45px;
-		padding: 1em;
+@media (max-width: 900px) {
+	.newsLetter {
+		display: block;
 	}
-	.landingImg {
-		position: relative;
-		top: 0;
-		left: -800px;
-		height: 100%;
-		width: 400%;
+	.textContent {
+		margin: 0 auto;
+		padding: 10px;
+		width: 100%;
+	}
+	.companyName {
+		font-size: 55px;
+		padding: 2em;
+	}
+	.imgContainer {
+		max-width: 300%;
+		.landingImg {
+			position: relative;
+			top: 0;
+			left: -500px;
+			height: 100%;
+			width: 200%;
+		}
+	}
+	.textContent {
+		max-width: 100%;
 	}
 	.inputForm {
 		width: 100%;
 		margin: 0 auto;
+		.inputError {
+			margin: 0;
+			color: red;
+			font-size: 12px;
+			height: 20px;
+		}
 		.firstNameInput {
-			width: 45%;
+			width: 47.2%;
 			display: inline-block;
 			margin: 0px 10px 10px 10px;
 			input {
@@ -69,7 +152,7 @@ footer {
 			}
 		}
 		.lastNameInput {
-			width: 45%;
+			width: 46.5%;
 			display: inline-block;
 			margin: 10px;
 			input {
@@ -78,7 +161,77 @@ footer {
 			}
 		}
 		.emailInput {
-			width: 94.5%;
+			width: 96%;
+			display: block;
+			margin: 0px 10px;
+
+			input {
+				height: 20px;
+				width: 100%;
+			}
+		}
+		button {
+			margin: 10px;
+			padding: 10px;
+			width: 97.5%;
+			border-radius: 0;
+		}
+	}
+}
+@media (max-width: 500px) {
+	.companyName {
+		font-size: 45px;
+		padding: 1em;
+	}
+	.imgContainer {
+		max-width: 300%;
+		.landingImg {
+			position: relative;
+			top: 0;
+			left: -500px;
+			height: 100%;
+			width: 300%;
+		}
+	}
+	.textContent {
+		max-width: 100%;
+	}
+	.landingImg {
+		position: relative;
+		top: 0;
+		left: 0px;
+		height: 100%;
+		width: 400%;
+	}
+	.inputForm {
+		width: 100%;
+		margin: 0 auto;
+		.inputError {
+			margin: 0;
+			color: red;
+			font-size: 12px;
+			height: 20px;
+		}
+		.firstNameInput {
+			width: 44.8%;
+			display: inline-block;
+			margin: 0px 10px 10px 10px;
+			input {
+				width: 100%;
+				height: 20px;
+			}
+		}
+		.lastNameInput {
+			width: 44.7%;
+			display: inline-block;
+			margin: 10px;
+			input {
+				height: 20px;
+				width: 100%;
+			}
+		}
+		.emailInput {
+			width: 93.8%;
 			display: block;
 			margin: 0px 10px;
 

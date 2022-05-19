@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import style from "./Home.module.scss";
 import Subscribe from "../components/Subscribe";
 import LandingPage from "../components/LandingPage";
@@ -6,12 +6,31 @@ import Preferences from "./Preferences";
 
 function Home() {
 	// preferances will be its own page eventually
+	const [prefBtn, setPrefBtn] = useState(false);
+	const [storageEmail, setStorageEmail] = useState(null);
+
+	function checkForEmail() {
+		const email = localStorage.getItem("spaceOriginsEmail");
+		if (email) {
+			setStorageEmail(JSON.parse(email));
+		}
+	}
+
+	useEffect(() => {
+		checkForEmail();
+	}, []);
+
 	return (
 		<div>
 			<main>
 				<LandingPage />
-				<Preferences />
-				<Subscribe />
+				{storageEmail ? (
+					<Preferences email={storageEmail} />
+				) : (
+					<Subscribe />
+				)}
+				{/* {btn && <Preferences />} */}
+				{/* <button>Edit Preferences</button> */}
 			</main>
 			<footer>
 				<div className={style.lowerCompany}>

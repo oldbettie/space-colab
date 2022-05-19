@@ -3,114 +3,93 @@ import style from "./Home.module.scss";
 import { db } from "../firebase-config";
 import {
 	collection,
+	query,
 	doc,
-	setDoc,
 	addDoc,
 	getDocs,
 	Timestamp,
+	getDoc,
+	where,
+	updateDoc,
 } from "firebase/firestore";
 
-const Preferences = () => {
-	const [formData, setFormData] = useState({
-		newsletterTravel: "",
-		newsletterUpdates: "",
-		newsletterCareers: "",
-		newsletterEvents: "",
-		newsletterUnsubscribe: "",
-	});
+const Preferences = ({ email }) => {
+	const [currentUserData, setCurrentUserData] = useState({});
+	const [newsletters, setNewsLetters] = useState(null);
 
-	const [isFormSubmitted, setIsFormSubmitted] = useState(false);
-	const {
-		newsletterTravel,
-		newsletterUpdates,
-		newsletterCareers,
-		newsletterEvents,
-		newsletterUnsubscribe,
-	} = formData;
-	const [emailExists, setEmailExists] = useState(false);
+	function handleOnChange(name) {
+		const { value } = name.target;
+		let object = { ...newsletters };
+		object[value] = !object[value];
+		setNewsLetters(object);
+	}
 
-	// const handleChangeOne = () => {
-	// 	setCheckedOne(!checkedOne);
-	// };
-
-	// const handleChangeTwo = () => {
-	// 	setCheckedTwo(!checkedTwo);
-	// };
-
-	async function postSubmit() {
-		const usersRef = collection(db, "preferences");
-		await addDoc(usersRef, {
-			...formData,
-			createdAt: Timestamp.fromDate(new Date()),
+	function submitPreferences() {
+		const userDoc = doc(db, "users", currentUserData.id);
+		console.log(currentUserData.id);
+		updateDoc(userDoc, {
+			...currentUserData,
+			...newsletters,
 		});
 	}
 
-	// I am pretty sure this should be user_id and not email
-	const handleSubmit = async (event) => {
-		event.preventDefault();
-		let checkEmail = await getEmailList();
-		if (checkEmail.includes(formData.email)) {
-			setIsFormSubmitted(true);
-			postSubmit();
-			// 	setFormData({
-			// 		newsletterTravel: "",
-			// 		newsletterUpdates: "",
-			// 		newsletterCareers: "",
-			// 		newsletterEvents: "",
-			// 		newsletterUnsubscribe: "",
-			// }
-		}
-	};
-
-	async function getEmailList() {
-		let emailList = [];
-		const usersRef = collection(db, "users");
-		const data = await getDocs(usersRef);
-		data.docs.forEach((user) => emailList.push(user.data().email));
-		return emailList;
+	// gets and sets user preferences if any are stored in db
+	async function getEmailInfo() {
+		const userInfo = collection(db, "users");
+		const data = query(userInfo, where("email", "==", email));
+		const userdata = await getDocs(data);
+		userdata.docs.forEach((doc) => {
+			if (doc.data()) {
+				setNewsLetters({
+					TravelOpportunities: currentUserData.TravelOpportunities,
+					SpaceOriginUpdates: currentUserData.SpaceOriginUpdates,
+					CareerOpportunities: currentUserData.CareerOpportunities,
+					Events: currentUserData.Events,
+				});
+				setCurrentUserData({ ...doc.data(), id: doc.id });
+			} else setCurrentUserData(doc.data());
+		});
 	}
 
-	const Checkbox = ({ label, value, onChange }) => {
-		return (
-			<label>
-				<input type="checkbox" checked={value} onChange={onChange} />
-				{label}
-			</label>
-		);
-	};
+	useEffect(() => {
+		if (email != null) {
+			getEmailInfo();
+		}
+	}, []);
 
 	return (
-		<div className={style.preferencesContainer}>
-			<Checkbox
-				label="Commercial Space Travel Opportunities"
-				value={newsletterTravel}
-				onChange={handleSubmit}
-			/>
-			<br />
-			<Checkbox
-				label="Space Origin Updates"
-				value={newsletterUpdates}
-				onChange={handleSubmit}
-			/>
-			<br />
-			<Checkbox
-				label="Career Opportunities"
-				value={newsletterCareers}
-				onChange={handleSubmit}
-			/>
-			<br />
-			<Checkbox
-				label="Events"
-				value={newsletterEvents}
-				onChange={handleSubmit}
-			/>
-			<br />
-			<Checkbox
-				label="Unsubscribe"
-				value={newsletterUnsubscribe}
-				onChange={handleSubmit}
-			/>
-			<br />
+		<div>
+			<div className={style.textContent}>
+				<h2>
+					Welcome back {currentUserData.firstName}{" "}
+					{currentUserData.lastName}.
+				</h2>
+				<div>
+					<p>You can customize the content you'd like to see here.</p>
+				</div>
+				<div>
+					<h2>I Want To See...</h2>
+				</div>
+			</div>
+			<div className={style.preferencesForm}>
+				{newsletters != null &&
+					Object.keys(newsletters).map((newsletter, index) => {
+						return (
+							<label key={index} className={style.checkBoxLabel}>
+								<input
+									type="checkbox"
+									value={newsletter}
+									checked={newsletters[newsletter]}
+									onChange={(newsletter) =>
+										handleOnChange(newsletter, index)
+									}
+								/>
+								{newsletter}
+							</label>
+						);
+					})}
+				<button onClick={submitPreferences}>Submit Preferences</button>
+			</div>
 		</div>
 	);
 };

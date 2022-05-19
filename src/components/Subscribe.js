@@ -74,6 +74,10 @@ const Subscribe = () => {
 			lastName: lastName,
 			email: email,
 			createdAt: Timestamp.fromDate(new Date()),
+			TravelOpportunities: true,
+			SpaceOriginUpdates: true,
+			CareerOpportunities: true,
+			Events: true,
 		});
 	}
 
@@ -96,48 +100,84 @@ const Subscribe = () => {
 				return;
 			} else {
 				postSubmit();
+				localStorage.setItem(
+					"spaceOriginsEmail",
+					JSON.stringify(email)
+				);
+				alert("Subscribed get ready for take off!");
 			}
 		}
 	};
+	// check local storage for email when accessing site
 
 	return (
-		<>
-			{emailExists && <p>Email already exists</p>}
-			<form onSubmit={handleSubmit} className={style.inputForm}>
-				<div className={style.firstNameInput}>
-					{firstNameError && <p>First Name Is invalid</p>}
-					<input
-						type="text"
-						placeholder="First Name"
-						value={firstName}
-						onChange={handleFirstNameInput}
-						required
-					/>
-				</div>
-				<div className={style.lastNameInput}>
-					{lastNameError && <p>Surname Is invalid</p>}
-					<input
-						type="text"
-						placeholder="Surname"
-						value={lastName}
-						onChange={handleLastNameInput}
-						required
-					/>
-				</div>
-				<div className={style.emailInput}>
-					{emailError && <p>Email Is invalid</p>}
-					<input
-						type="email"
-						placeholder="Your Email"
-						value={email}
-						onChange={handleEmailInput}
-						required
-					/>
-				</div>
-				<button>Subscribe</button>
-				{formError && <p>Form Is Invalid</p>}
-			</form>
-		</>
+		<div className={style.newsLetter}>
+			<div className={style.textContent}>
+				<h2>JOIN OUR NEWSLETTER</h2>
+				<p>
+					Subscribe to our newsletter to get to know us better and be
+					with us in every adventure.
+				</p>
+				<p>
+					By signing up, you will receive monthly updates on
+					everything happening in our organisation
+				</p>
+			</div>
+
+			<div>
+				{emailExists && (
+					<p className={style.signUpError}>Email already exists</p>
+				)}
+				<form onSubmit={handleSubmit} className={style.inputForm}>
+					<div className={style.firstNameInput}>
+						{firstNameError ? (
+							<p className={style.inputError}>
+								First Name Is invalid
+							</p>
+						) : (
+							<p className={style.inputError}></p>
+						)}
+						<input
+							type="text"
+							placeholder="First Name"
+							value={firstName}
+							onChange={handleFirstNameInput}
+							required
+						/>
+					</div>
+					<div className={style.lastNameInput}>
+						{lastNameError ? (
+							<p className={style.inputError}>
+								Last Name Is invalid
+							</p>
+						) : (
+							<p className={style.inputError}></p>
+						)}
+						<input
+							type="text"
+							placeholder="Surname"
+							value={lastName}
+							onChange={handleLastNameInput}
+							required
+						/>
+					</div>
+					<div className={style.emailInput}>
+						{emailError && (
+							<p className={style.inputError}>Email Is invalid</p>
+						)}
+						<input
+							type="email"
+							placeholder="Your Email"
+							value={email}
+							onChange={handleEmailInput}
+							required
+						/>
+					</div>
+					<button>Subscribe</button>
+					{formError && <p>Form Is Invalid</p>}
+				</form>
+			</div>
+		</div>
 	);
 };
 
