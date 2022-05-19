@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import style from "./Preferences.module.scss";
+import style from "./Home.module.scss";
 import { db } from "../firebase-config";
 import {
 	collection,
@@ -80,7 +80,7 @@ const Preferences = () => {
 	};
 
 	return (
-		<div>
+		<div className={style.preferencesContainer}>
 			<Checkbox
 				label="Commercial Space Travel Opportunities"
 				value={newsletterTravel}

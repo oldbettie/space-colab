@@ -13,6 +13,17 @@ function LandingPage() {
 				alt="space x ship on the moon"
 				className={style.landingImg}
 			/>
+			<div className={style.textContent}>
+				<h2>JOIN OUR NEWSLETTER</h2>
+				<p>
+					Subscribe to our newsletter to get to know us better and be
+					with us in every adventure.
+				</p>
+				<p>
+					By signing up, you will receive monthly updates on
+					everything happening in our organisation
+				</p>
+			</div>
 		</div>
 	);
 }

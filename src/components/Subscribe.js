@@ -8,6 +8,7 @@ import {
 	getDocs,
 	Timestamp,
 } from "firebase/firestore";
+import style from "../pages/Home.module.scss";
 
 const Subscribe = () => {
 	const [firstName, setFirstName] = useState("");
@@ -102,8 +103,8 @@ const Subscribe = () => {
 	return (
 		<>
 			{emailExists && <p>Email already exists</p>}
-			<form onSubmit={handleSubmit}>
-				<div>
+			<form onSubmit={handleSubmit} className={style.inputForm}>
+				<div className={style.firstNameInput}>
 					{firstNameError && <p>First Name Is invalid</p>}
 					<input
 						type="text"
@@ -113,7 +114,7 @@ const Subscribe = () => {
 						required
 					/>
 				</div>
-				<div>
+				<div className={style.lastNameInput}>
 					{lastNameError && <p>Surname Is invalid</p>}
 					<input
 						type="text"
@@ -123,7 +124,7 @@ const Subscribe = () => {
 						required
 					/>
 				</div>
-				<div>
+				<div className={style.emailInput}>
 					{emailError && <p>Email Is invalid</p>}
 					<input
 						type="email"

@@ -16,3 +16,31 @@ code {
 	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
 		monospace;
 }
+$primary: #f1e9db;
+$secondary: #07020d;
+$third: rgb(40, 39, 39);
+
+a {
+	text-decoration: none;
+	color: $primary;
+}
+
+button {
+	margin: 4px;
+	padding: 2px 6px;
+	background: none;
+	color: $primary;
+	border: 2px solid $primary;
+	border-radius: 7px;
+}
+
+button:hover {
+	cursor: pointer;
+}
+
+input {
+	border: none;
+	background-color: $third;
+	color: $primary;
+	padding: 4px 6px;
+}

@@ -13,7 +13,20 @@ function Home() {
 				<Preferences />
 				<Subscribe />
 			</main>
-			<footer></footer>
+			<footer>
+				<div className={style.lowerCompany}>
+					<h3>Space Origin</h3>
+				</div>
+				<div className={style.links}>
+					<a href="#">Linked In</a>
+					<a href="#">Twitter</a>
+					<a href="#">Facebook</a>
+					<a href="#">Email</a>
+					<a href="#">Flicker</a>
+					<a href="#">Privacy Policy</a>
+					<a href="#">Supplies</a>
+				</div>
+			</footer>
 		</div>
 	);
 }

@@ -1,6 +1,10 @@
+$primary: #f1e9db;
+$secondary: #07020d;
+$third: darkgrey;
+
 .companyName {
 	position: absolute;
-	color: aliceblue;
+	color: $primary;
 	z-index: 10;
 	padding: 5em;
 	font-size: 75px;
@@ -16,6 +20,30 @@
 	height: 100%;
 }
 
+.textContent {
+	padding: 10px;
+}
+.preferencesContainer {
+	display: none;
+}
+footer {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 0;
+
+	.links {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		font-size: 15px;
+		padding: 0px 5px;
+		a {
+			padding: 8px 12px;
+		}
+	}
+}
 @media (max-width: 500px) {
 	.companyName {
 		font-size: 45px;
@@ -27,5 +55,43 @@
 		left: -800px;
 		height: 100%;
 		width: 400%;
+	}
+	.inputForm {
+		width: 100%;
+		margin: 0 auto;
+		.firstNameInput {
+			width: 45%;
+			display: inline-block;
+			margin: 0px 10px 10px 10px;
+			input {
+				width: 100%;
+				height: 20px;
+			}
+		}
+		.lastNameInput {
+			width: 45%;
+			display: inline-block;
+			margin: 10px;
+			input {
+				height: 20px;
+				width: 100%;
+			}
+		}
+		.emailInput {
+			width: 94.5%;
+			display: block;
+			margin: 0px 10px;
+
+			input {
+				height: 20px;
+				width: 100%;
+			}
+		}
+		button {
+			margin: 10px;
+			padding: 10px;
+			width: 96%;
+			border-radius: 0;
+		}
 	}
 }
