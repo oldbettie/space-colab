@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import style from "../pages/Dashboard.module.scss";
-
+import graph from "../images/image.png";
 const Subscribers = (props) => {
 	const [userData, setUserData] = useState(null);
 
@@ -16,7 +16,13 @@ const Subscribers = (props) => {
 		return (
 			<div>
 				<div className={style.tableContainer}>
-					<h2>Subscribers</h2>
+					<h1>Dashboard</h1>
+					<img
+						src={graph}
+						alt="users sgraph"
+						className={style.graph}
+					/>
+					<h2 className={style.tableHeading}>SUBSCRIBERS</h2>
 					<table>
 						<thead>
 							<tr>

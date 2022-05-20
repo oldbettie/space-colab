@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { db } from "../firebase-config";
 import {
 	collection,
@@ -11,6 +12,7 @@ import {
 import style from "../pages/Home.module.scss";
 
 const Subscribe = () => {
+	const navigate = useNavigate();
 	const [firstName, setFirstName] = useState("");
 	const [lastName, setLastName] = useState("");
 	const [email, setEmail] = useState(null);
@@ -30,7 +32,11 @@ const Subscribe = () => {
 
 	function findEmailError(email) {
 		if (email != null) {
-			if (!email.includes("@") || !/^[^@]*@[^@]*$/.test(email)) {
+			if (
+				!email.includes("@") ||
+				!email.includes(".") ||
+				!/^[^@]*@[^@]*$/.test(email)
+			) {
 				return true;
 			}
 		}
@@ -105,6 +111,7 @@ const Subscribe = () => {
 					JSON.stringify(email)
 				);
 				alert("Subscribed get ready for take off!");
+				navigate("/");
 			}
 		}
 	};

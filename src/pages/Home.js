@@ -16,15 +16,15 @@ function Home() {
 		}
 	}
 
-	useEffect(() => {
+	setTimeout(() => {
 		checkForEmail();
-	}, []);
+	}, 400);
 
 	return (
 		<div>
 			<main>
 				<LandingPage />
-				{storageEmail ? (
+				{storageEmail != null ? (
 					<Preferences email={storageEmail} />
 				) : (
 					<Subscribe />

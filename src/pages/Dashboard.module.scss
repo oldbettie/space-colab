@@ -3,14 +3,21 @@ $secondary: #07020d;
 $third: darkgrey;
 
 .tableContainer {
-	background-color: $primary;
+	background-color: #fdfdfd;
 	height: 100vh;
 	width: 100vw;
 	overflow-x: auto;
+	padding: 1em;
+	h1,
+	h2 {
+		color: $secondary;
+	}
+	.graph {
+		width: 95%;
+	}
 	table {
 		color: $secondary;
 		width: 95%;
-		border-collapse: collapse;
 		border: 1px solid $secondary;
 		margin: 1em auto;
 	}

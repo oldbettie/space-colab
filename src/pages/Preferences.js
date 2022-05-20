@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import style from "./Home.module.scss";
 import { db } from "../firebase-config";
 import {
@@ -14,8 +15,10 @@ import {
 } from "firebase/firestore";
 
 const Preferences = ({ email }) => {
+	const navigate = useNavigate();
 	const [currentUserData, setCurrentUserData] = useState({});
 	const [newsletters, setNewsLetters] = useState(null);
+	const [preBtn, setPreBtn] = useState(true);
 
 	function handleOnChange(name) {
 		const { value } = name.target;
@@ -25,6 +28,7 @@ const Preferences = ({ email }) => {
 	}
 
 	function submitPreferences() {
+		setPreBtn(false);
 		const userDoc = doc(db, "users", currentUserData.id);
 		console.log(currentUserData.id);
 		updateDoc(userDoc, {
@@ -51,7 +55,9 @@ const Preferences = ({ email }) => {
 			} else setCurrentUserData(doc.data());
 		});
 	}
-	useEffect(() => {}, [newsletters]);
+	function changeBtn() {
+		setPreBtn(!preBtn);
+	}
 
 	useEffect(() => {
 		if (email != null) {
@@ -69,25 +75,36 @@ const Preferences = ({ email }) => {
 				<p>You can customize the content you'd like to see here.</p>
 				<h3>I Want To See...</h3>
 			</div>
-			<div className={style.preferencesForm}>
-				{newsletters != null &&
-					Object.keys(newsletters).map((newsletter, index) => {
-						return (
-							<label key={index} className={style.checkBoxLabel}>
-								<input
-									type="checkbox"
-									value={newsletter}
-									checked={newsletters[newsletter]}
-									onChange={(newsletter) =>
-										handleOnChange(newsletter)
-									}
-								/>
-								{newsletter}
-							</label>
-						);
-					})}
-				<button onClick={submitPreferences}>Submit Preferences</button>
-			</div>
+			{preBtn ? (
+				<div className={style.preferencesForm}>
+					{newsletters != null &&
+						Object.keys(newsletters).map((newsletter, index) => {
+							return (
+								<label
+									key={index}
+									className={style.checkBoxLabel}
+								>
+									<input
+										type="checkbox"
+										value={newsletter}
+										checked={newsletters[newsletter]}
+										onChange={(newsletter) =>
+											handleOnChange(newsletter)
+										}
+									/>
+									{newsletter}
+								</label>
+							);
+						})}
+					<button onClick={submitPreferences}>
+						Submit Preferences
+					</button>
+				</div>
+			) : (
+				<div className={style.preferencesForm}>
+					<button onClick={changeBtn}>Edit Preferences</button>
+				</div>
+			)}
 		</div>
 	);
 };
