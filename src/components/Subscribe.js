@@ -177,6 +177,13 @@ const Subscribe = () => {
 					{formError && <p>Form Is Invalid</p>}
 				</form>
 			</div>
+			<div className={style.textContentLower}>
+				<p>
+					We respect your privacy. Your information is safe with us
+					and it will never be shared.
+				</p>
+				<p>You can opt out from our newsletter at any time</p>
+			</div>
 		</div>
 	);
 };

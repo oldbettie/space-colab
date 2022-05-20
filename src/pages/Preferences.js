@@ -39,17 +39,19 @@ const Preferences = ({ email }) => {
 		const data = query(userInfo, where("email", "==", email));
 		const userdata = await getDocs(data);
 		userdata.docs.forEach((doc) => {
-			if (doc.data()) {
+			console.log("object");
+			if (doc.data() != null) {
 				setNewsLetters({
-					TravelOpportunities: currentUserData.TravelOpportunities,
-					SpaceOriginUpdates: currentUserData.SpaceOriginUpdates,
-					CareerOpportunities: currentUserData.CareerOpportunities,
-					Events: currentUserData.Events,
+					TravelOpportunities: doc.data().TravelOpportunities,
+					SpaceOriginUpdates: doc.data().SpaceOriginUpdates,
+					CareerOpportunities: doc.data().CareerOpportunities,
+					Events: doc.data().Events,
 				});
 				setCurrentUserData({ ...doc.data(), id: doc.id });
 			} else setCurrentUserData(doc.data());
 		});
 	}
+	useEffect(() => {}, [newsletters]);
 
 	useEffect(() => {
 		if (email != null) {
@@ -64,12 +66,8 @@ const Preferences = ({ email }) => {
 					Welcome back {currentUserData.firstName}{" "}
 					{currentUserData.lastName}.
 				</h2>
-				<div>
-					<p>You can customize the content you'd like to see here.</p>
-				</div>
-				<div>
-					<h2>I Want To See...</h2>
-				</div>
+				<p>You can customize the content you'd like to see here.</p>
+				<h3>I Want To See...</h3>
 			</div>
 			<div className={style.preferencesForm}>
 				{newsletters != null &&
@@ -81,7 +79,7 @@ const Preferences = ({ email }) => {
 									value={newsletter}
 									checked={newsletters[newsletter]}
 									onChange={(newsletter) =>
-										handleOnChange(newsletter, index)
+										handleOnChange(newsletter)
 									}
 								/>
 								{newsletter}
