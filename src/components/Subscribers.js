@@ -22,7 +22,13 @@ const Subscribers = (props) => {
 						alt="users sgraph"
 						className={style.graph}
 					/>
-					<h2 className={style.tableHeading}>SUBSCRIBERS</h2>
+					<span className={style.tableHeader}>
+						<h2 className={style.tableHeading}>SUBSCRIBERS</h2>
+						<div className={style.tableBtns}>
+							{/* <div className={style.tableBtn}>FILTER</div>
+							<div className={style.tableBtn}>ACTION</div> */}
+						</div>
+					</span>
 					<table>
 						<thead>
 							<tr>

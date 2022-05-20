@@ -120,7 +120,7 @@ const Subscribe = () => {
 	return (
 		<div className={style.newsLetter}>
 			<div className={style.textContent}>
-				<h2>JOIN OUR NEWSLETTER</h2>
+				<h2 style={{ fontStyle: "condensed" }}>NEWSLETTER</h2>
 				<p>
 					Subscribe to our newsletter to get to know us better and be
 					with us in every adventure.
@@ -180,7 +180,7 @@ const Subscribe = () => {
 							required
 						/>
 					</div>
-					<button>Subscribe</button>
+					<button>SUBSCRIBE</button>
 					{formError && <p>Form Is Invalid</p>}
 				</form>
 			</div>

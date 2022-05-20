@@ -25,7 +25,9 @@ function Home() {
 			<main>
 				<LandingPage />
 				{storageEmail != null ? (
-					<Preferences email={storageEmail} />
+					<div>
+						<Preferences email={storageEmail} />
+					</div>
 				) : (
 					<Subscribe />
 				)}

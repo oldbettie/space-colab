@@ -1,6 +1,7 @@
-$primary: #f1e9db;
+$primary: #ffffff;
 $secondary: #07020d;
 $third: darkgrey;
+$input: #999999;
 
 .companyName {
 	position: absolute;
@@ -24,22 +25,58 @@ $third: darkgrey;
 		width: 100%;
 	}
 }
+.textContentPreferences {
+	margin: 34px 34px;
+	max-width: 357px;
+}
+
+.newsletterTitle {
+	margin: 60px 45px 34px;
+}
+
 .newsLetter {
+	margin: 59px 34px 61px 34px;
 	display: flex;
 	justify-content: center;
 	flex-wrap: wrap;
 }
-.textContent {
-	max-width: 500px;
-}
 
-.preferencesForm {
-	text-align: center;
-	.checkBoxLabel {
-		width: 100%;
-		display: flex;
-		justify-content: center;
-		padding: 2px;
+.textContent {
+	max-width: 357px;
+	p {
+		width: 80%;
+	}
+
+	h2 {
+		font-family: "Roboto condensed";
+		text-transform: uppercase;
+	}
+}
+.preferencesContainer {
+	background-color: #333333;
+	margin: 34px 35px 35px;
+	max-width: 500px;
+	.textContent {
+		padding: 20px 0;
+		margin: 20px 27px;
+	}
+	.preferencesForm {
+		padding: 0 0 20px;
+		margin: 0 27px;
+		h3 {
+			font-family: "Roboto condensed";
+		}
+		.checkBoxLabel {
+			width: 100%;
+			display: flex;
+			padding: 6px;
+		}
+		button {
+			width: 100%;
+			padding: 10px;
+			margin-top: 30px;
+			border-radius: 0;
+		}
 	}
 }
 .inputForm {
@@ -58,6 +95,7 @@ $third: darkgrey;
 		input {
 			width: 100%;
 			height: 20px;
+			color: $input;
 		}
 	}
 	.lastNameInput {
@@ -67,6 +105,7 @@ $third: darkgrey;
 		input {
 			height: 20px;
 			width: 100%;
+			color: $input;
 		}
 	}
 	.emailInput {
@@ -77,6 +116,7 @@ $third: darkgrey;
 		input {
 			height: 20px;
 			width: 100%;
+			color: $input;
 		}
 	}
 	button {
@@ -100,15 +140,21 @@ footer {
 	justify-content: center;
 	align-items: center;
 	padding: 0;
+	margin-bottom: 34px;
+	h3 {
+		font-size: 15px;
+		color: #999999;
+	}
 
 	.links {
+		margin: 0 34px;
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: center;
 		font-size: 15px;
 		padding: 0px 5px;
 		a {
-			padding: 8px 12px;
+			padding: 4px 12px;
 		}
 	}
 }
@@ -202,6 +248,10 @@ footer {
 		font-size: 14px;
 		margin: 0px auto;
 		max-width: 97%;
+		h2 {
+			margin-bottom: 34px;
+		}
+		margin-bottom: 14px;
 	}
 	.landingImg {
 		position: relative;

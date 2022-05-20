@@ -66,45 +66,65 @@ const Preferences = ({ email }) => {
 	}, []);
 
 	return (
-		<div>
-			<div className={style.textContent}>
-				<h2>
-					Welcome back {currentUserData.firstName}{" "}
-					{currentUserData.lastName}.
-				</h2>
-				<p>You can customize the content you'd like to see here.</p>
-				<h3>I Want To See...</h3>
+		<div className={style.newsLetter}>
+			<div className={style.textContentPreferences}>
+				<h2>NEWSLETTER</h2>
+				<div>
+					<p>
+						Subscribe to our newsletter to get to know us better and
+						be with us in every adventure.
+					</p>
+					<p>
+						By signing up, you will receive monthly updates on
+						everything happening in our organisation
+					</p>
+				</div>
 			</div>
-			{preBtn ? (
-				<div className={style.preferencesForm}>
-					{newsletters != null &&
-						Object.keys(newsletters).map((newsletter, index) => {
-							return (
-								<label
-									key={index}
-									className={style.checkBoxLabel}
-								>
-									<input
-										type="checkbox"
-										value={newsletter}
-										checked={newsletters[newsletter]}
-										onChange={(newsletter) =>
-											handleOnChange(newsletter)
-										}
-									/>
-									{newsletter}
-								</label>
-							);
-						})}
-					<button onClick={submitPreferences}>
-						Submit Preferences
-					</button>
+			<div className={style.preferencesContainer}>
+				<div className={style.textContent}>
+					<h2>
+						WELCOME {currentUserData.firstName}{" "}
+						{currentUserData.lastName}!
+					</h2>
+					<p>You've subscribed to our newsletter</p>
+					<p>You can customize the content you'd like to see here.</p>
 				</div>
-			) : (
-				<div className={style.preferencesForm}>
-					<button onClick={changeBtn}>Edit Preferences</button>
-				</div>
-			)}
+				{preBtn ? (
+					<div className={style.preferencesForm}>
+						<h3>I WANT TO SEE... </h3>
+						{newsletters != null &&
+							Object.keys(newsletters).map(
+								(newsletter, index) => {
+									return (
+										<label
+											key={index}
+											className={style.checkBoxLabel}
+										>
+											<input
+												type="checkbox"
+												value={newsletter}
+												checked={
+													newsletters[newsletter]
+												}
+												onChange={(newsletter) =>
+													handleOnChange(newsletter)
+												}
+											/>
+											{newsletter}
+										</label>
+									);
+								}
+							)}
+						<button onClick={submitPreferences}>
+							SAVE PREFERENCES
+						</button>
+					</div>
+				) : (
+					<div className={style.preferencesForm}>
+						<button onClick={changeBtn}>Edit Preferences</button>
+					</div>
+				)}
+			</div>
 		</div>
 	);
 };
